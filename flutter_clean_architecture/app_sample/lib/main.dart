@@ -1,4 +1,5 @@
 import 'package:app_sample/di/app_module.dart';
+import 'package:app_sample/home/presentation/cubit/user_page_c.dart';
 import 'package:flutter/material.dart';
 
 import 'home/presentation/mobx/user_page_x.dart';
@@ -17,7 +18,7 @@ class AppSample extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: UserListPageX(),
+      home: UserListPageC(),
     );
   }
 }

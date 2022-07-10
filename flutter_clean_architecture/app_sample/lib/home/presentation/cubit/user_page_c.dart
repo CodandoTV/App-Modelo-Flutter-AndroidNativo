@@ -3,41 +3,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di/user_module.dart';
-import 'user_controller.dart';
-import 'user_state.dart';
+import 'user_controller_c.dart';
+import 'user_state_c.dart';
 
-class UserListPage extends StatefulWidget {
-  const UserListPage({Key? key}) : super(key: key);
+class UserListPageC extends StatefulWidget {
+  const UserListPageC({Key? key}) : super(key: key);
 
   @override
-  State<UserListPage> createState() => _UserListPageState();
+  State<UserListPageC> createState() => _UserListPageStateC();
 }
 
-class _UserListPageState extends State<UserListPage> {
-  late UserController _bloc;
+class _UserListPageStateC extends State<UserListPageC> {
+  late UserControllerC _controller;
 
-  _UserListPageState() {
+  _UserListPageStateC() {
     UserModule.init();
   }
 
   @override
   void initState() {
     super.initState();
-    _bloc = getIt<UserController>();
+    _controller = getIt<UserControllerC>();
+    _controller.loadList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("bloc"),
+          title: Text("cubit"),
         ),
         body: Center(child: observerListen()));
   }
 
   observerListen() {
-    return BlocListener<UserController, UserListState>(
-        bloc: _bloc,
+    return BlocListener<UserControllerC, UserListState>(
+        bloc: _controller,
         listener: (context, state) {
           ScaffoldMessenger.of(context).removeCurrentSnackBar();
           ScaffoldMessenger.of(context).showSnackBar(
@@ -50,8 +51,8 @@ class _UserListPageState extends State<UserListPage> {
   }
 
   observer() {
-    return BlocBuilder<UserController, UserListState>(
-        bloc: _bloc,
+    return BlocBuilder<UserControllerC, UserListState>(
+        bloc: _controller,
         builder: (context, state) {
           if (state is UserSuccessState) {
             final users = state.users;
@@ -72,7 +73,7 @@ class _UserListPageState extends State<UserListPage> {
 
   @override
   void dispose() {
-    _bloc.close();
+    _controller.close();
     UserModule.dispose();
     super.dispose();
   }

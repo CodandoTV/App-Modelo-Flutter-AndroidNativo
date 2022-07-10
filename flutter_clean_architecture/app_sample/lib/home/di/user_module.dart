@@ -7,6 +7,7 @@ import '../domain/user_repository.dart';
 import '../domain/user_usecase_list.dart';
 import '../presentation/bloc/user_controller.dart';
 import '../presentation/bloc/user_event.dart';
+import '../presentation/cubit/user_controller_c.dart';
 import '../presentation/mobx/user_controller_x.dart';
 
 class UserModule {
@@ -29,6 +30,9 @@ class UserModule {
           getIt.registerFactory<UserController>(() =>
               UserController(getIt<UserUseCaseList>())
                 ..add(UserListLoadEvent()));
+
+          getIt.registerFactory<UserControllerC>(() =>
+              UserControllerC(getIt<UserUseCaseList>()));
 
           getIt.registerFactory<UserListControllerX>(
               () => UserListControllerX(getIt<UserUseCaseList>()));

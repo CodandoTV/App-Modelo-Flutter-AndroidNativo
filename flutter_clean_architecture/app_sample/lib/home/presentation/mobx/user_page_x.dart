@@ -31,7 +31,7 @@ class _UserListPageXState extends State<UserListPageX> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("teste"),
+          title: Text("mobx"),
         ),
         body: Center(child: Observer(builder: (_) {
           switch (_controller.state.runtimeType) {
