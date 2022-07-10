@@ -24,6 +24,7 @@ class _UserListPageXState extends State<UserListPageX> {
   void initState() {
     super.initState();
     _controller = getIt<UserListControllerX>();
+    _controller.loadUsers();
   }
 
   @override
@@ -37,7 +38,7 @@ class _UserListPageXState extends State<UserListPageX> {
             case UserLoadingStateX:
               return CircularProgressIndicator();
             case UserSuccessStateX:
-              final users = (_controller.state as UserSuccessStateX).users;
+              final users = _controller.state.toStateSuccess().users;
               return ListView.builder(
                   itemCount: users.length,
                   itemBuilder: (context, index) {

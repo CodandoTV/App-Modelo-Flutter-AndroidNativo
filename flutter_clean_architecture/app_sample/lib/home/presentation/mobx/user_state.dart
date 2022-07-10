@@ -14,3 +14,7 @@ class UserSuccessStateX extends UserListStateX {
 
   UserSuccessStateX({required this.users});
 }
+
+extension UserStateMapper on UserListStateX {
+  UserSuccessStateX toStateSuccess() => this as UserSuccessStateX;
+}

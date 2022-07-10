@@ -13,24 +13,24 @@ mixin _$UserListControllerX on UserListControllerBaseX, Store {
       Atom(name: 'UserListControllerBaseX.state', context: context);
 
   @override
-  ObservableFuture<UserListStateX> get state {
+  UserListStateX get state {
     _$stateAtom.reportRead();
     return super.state;
   }
 
   @override
-  set state(ObservableFuture<UserListStateX> value) {
+  set state(UserListStateX value) {
     _$stateAtom.reportWrite(value, super.state, () {
       super.state = value;
     });
   }
 
-  late final _$_loadUsersAsyncAction =
-      AsyncAction('UserListControllerBaseX._loadUsers', context: context);
+  late final _$loadUsersAsyncAction =
+      AsyncAction('UserListControllerBaseX.loadUsers', context: context);
 
   @override
-  Future<UserListStateX> _loadUsers() {
-    return _$_loadUsersAsyncAction.run(() => super._loadUsers());
+  Future<void> loadUsers() {
+    return _$loadUsersAsyncAction.run(() => super.loadUsers());
   }
 
   @override

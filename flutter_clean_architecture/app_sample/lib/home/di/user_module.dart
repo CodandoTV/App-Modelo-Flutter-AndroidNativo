@@ -31,7 +31,7 @@ class UserModule {
                 ..add(UserListLoadEvent()));
 
           getIt.registerFactory<UserListControllerX>(
-              () => UserListControllerX());
+              () => UserListControllerX(getIt<UserUseCaseList>()));
         });
   }
 

@@ -1,7 +1,7 @@
 import 'package:app_sample/di/app_module.dart';
 import 'package:flutter/material.dart';
 
-import 'home/presentation/bloc/user_page.dart';
+import 'home/presentation/mobx/user_page_x.dart';
 
 void main() {
   AppModule.init();
@@ -17,7 +17,7 @@ class AppSample extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: UserListPage(),
+      home: UserListPageX(),
     );
   }
 }
