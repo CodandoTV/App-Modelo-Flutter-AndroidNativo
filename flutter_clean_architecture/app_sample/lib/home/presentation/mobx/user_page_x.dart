@@ -37,6 +37,8 @@ class _UserListPageXState extends State<UserListPageX> {
           switch (_controller.state.runtimeType) {
             case UserLoadingStateX:
               return CircularProgressIndicator();
+            case UserErrorStateX:
+              return Text(_controller.state.toStateError().msg);
             case UserSuccessStateX:
               final users = _controller.state.toStateSuccess().users;
               return ListView.builder(

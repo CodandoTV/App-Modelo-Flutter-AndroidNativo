@@ -15,6 +15,14 @@ class UserSuccessStateX extends UserListStateX {
   UserSuccessStateX({required this.users});
 }
 
+class UserErrorStateX extends UserListStateX {
+  final String msg;
+
+  UserErrorStateX({required this.msg});
+}
+
+
 extension UserStateMapper on UserListStateX {
   UserSuccessStateX toStateSuccess() => this as UserSuccessStateX;
+  UserErrorStateX toStateError() => this as UserErrorStateX;
 }

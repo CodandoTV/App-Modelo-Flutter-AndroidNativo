@@ -1,4 +1,5 @@
 import 'package:app_sample/home/presentation/mobx/user_state.dart';
+import 'package:core_networking/error/CatchDioExtensions.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../domain/user_usecase_list.dart';
@@ -20,7 +21,12 @@ abstract class UserListControllerBaseX with Store {
 
   @action
   Future<void> loadUsers() async {
-    state = UserSuccessStateX(users: await _usecase.getUsers());
+    await _usecase
+        .getUsers()
+        .then((value) => {state = UserSuccessStateX(users: value)})
+        .catchFailure((failure, stacktrace) {
+      state = UserErrorStateX(msg: failure.exception.message);
+    });
   }
 
   void dispose() {
